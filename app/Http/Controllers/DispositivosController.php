@@ -23,26 +23,18 @@ class DispositivosController extends Controller
 
     public function agregar_dispositivo()
     {
-        $TiposDeDispositivos = Tipos_dispositivos::all();
-
-        //'Dipositivos' hace referencia a la clase del modelo
-        //'agregar_dispositivo' al nombre de esta función
-        //'compact' convierte el valor de la variable en array
-        return view("Dispositivos.agregar-dispositivos", compact("TiposDeDispositivos"));
+        $tiposDeDispositivos = Tipos_dispositivos::all();
+  
+        return view("Dispositivos.agregar-dispositivos", compact("tiposDeDispositivos"));
     }
 
     public function agregar_dispositivo_guardar(Request $request)
     {
-        // creacion de variables
-        $dispositivo;
-        $ipDispositivo;
-        $macDispositivo;
-        $tipoDispositivo;
 
-        $dispositivo = mb_strtoupper($request->input("dispositivo"));
-        $ipDispositivo = mb_strtoupper($request->input("ip_disp"));
-        $macDispositivo = mb_strtoupper($request->input("mac_disp"));
-        $tipoDisp=mb_strtoupper($request->input("id_tipo_de_dispositivo"));
+        $dispositivo = $request->input("descripcion");
+        $ipDispositivo = $request->input("ip");
+        $macDispositivo = $request->input("mac");
+        $tipoDisp=$request->input("TiposDispositivos");
 
 
         $disp = new Dispositivos();
@@ -51,10 +43,10 @@ class DispositivosController extends Controller
         $disp->mac = $macDispositivo;
         $disp->tipos_dispositivos_id_tipo_dispostivo=$tipoDisp;
 
-        // guardo en la base de datosS
+   
         $disp->save();
 
-        return redirect()->action('DispositivosController@dispositivos')->with($estado);
+        return redirect()->action('DispositivosController@dispositivos');
     }
 
 
@@ -62,45 +54,44 @@ class DispositivosController extends Controller
     {
     
 
-       // INICIALIZA VARIABLES 
-      $idDispositivo = $request->input("id");
-      // $dispositivo = mb_strtoupper($request->input("dispositivo"));
-      // $ipDispositivo = mb_strtoupper($request->input("ip"));
-      // $macDispositivo = mb_strtoupper($request->input("mac"));
-      // $tipoDisp=mb_strtoupper($request->input("tipoDeDispositivos"));
-      // dd($tipoDisp);
+      $idDispositivo = $request->input("id_dispositivo");
 
-      // BASE DE DATOS
       $tiposDeDispositivos = Tipos_dispositivos::all(); 
-      // dd($tiposDeDispositivos);
-     // dd(DB::table("dispositivo")->select("*")->where("id_dispositivo", "=", $idDispositivo)->get());
+
       $dispositivo = Dispositivos::find($idDispositivo);
 
-      // RETORNAR A LA VISTA 
       return view("Dispositivos.actualizar-dispositivo", compact("dispositivo", "tiposDeDispositivos"));
 
     }
 
+    public function actualizar_dispositivo_guardar(Request $request){
 
-    public function actualizar_dispositivo_guardar(Request $request)
-    {
-        $id = $request->input("id_dispositivo");
-        $descrip_dispositivo = $request->input("dispositivo");
-        $ip_dispositivo = $request->input("ipDispositivo");
-        $mac_dispositivo = $request->input("macDispositivo");
-        // $descrip_dispositivo = $request->input("dispositivo");
+  
+        $idDispositivo = $request->input("idDispositivo");
+        $dispositivo = $request->input("dispositivo");
+        $ipDispositivo = $request->input("ip");
+        $macDispositivo = $request->input("mac");
+        $tipoDisp= $request->input("id_tipo_de_dispositivo");
+    
+        
+        $disp = Dispositivos::find($idDispositivo);
+        $disp->dispositivo = $dispositivo;
+        $disp->ipDispositivo = $ipDispositivo;
+        $disp->macDispositivo = $macDispositivo;
+        $disp->TiposDispositivos_idTiposDispositivos =$tipoDisp;
+    
+        $disp->save();
+    
+        return redirect()->action('DispositivosController@dispositivos');
+    
+        }
 
-    }
+        public function eliminar_dispositivo(Request $request){
+            $id = $request->input("id_dispositivo");
+            $dispositivo = Dispositivos::find($id);
+            
+            $dispositivo->delete();
+            return redirect()->action('DispositivosController@dispositivos');
+        }
 
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
 }

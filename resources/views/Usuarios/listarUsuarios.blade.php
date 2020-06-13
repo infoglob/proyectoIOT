@@ -8,7 +8,7 @@
                 <a href="#" class="fa fa-times"></a>
             </div>
     
-            <h2 class="panel-title">Listado de Tipos de Dispositivos <a href="/insertar_tipo_dispositivos"
+            <h2 class="panel-title">Listado de Usuarios <a href="/agregar_usuario"
                 class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 Agregar</a> </h2>
@@ -19,31 +19,46 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Descripción</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Nro Doc</th>
+                            <th>Usuario</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tiposDeDispositivos as $tiposDeDispositivos)
+                        @foreach ($usuario as $usuario)
 
                         <tr>
-                            <td>{{ $tiposDeDispositivos->id_tipo_dispostivo}}</td>
-                            <td>{{ $tiposDeDispositivos->descripcion_tipo_dispositivo}}</td>
+                            <td>{{ $usuario->id_usuario}}</td>
+                            <td>{{ $usuario->nombre}}</td>
+                            <td>{{ $usuario->apellido}}</td>
+                            <td>{{ $usuario->nro_doc}}</td>
+                            <td>{{ $usuario->usuario}}</td>
                             <td>
     
                                 <!-- Modificar -->
-                                <form action="/actualizar_tipo_dispositivos" method="post" style="display: inline-block">
+                                <form action="/actualizar_usuario" method="post" style="display: inline-block">
                                     @csrf
-                                    <input name="id_tipo_dispostivo" type="hidden" value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
+                                    <input name="id_usuario" type="hidden" value="{{ $usuario->id_usuario }}">
                                     <button class="btn btn-warning fas fa-edit"></button>
                                 </form>
     
                                 <!-- Eliminar -->
-                                <form action="/eliminar_tipo_dispositivos" method="post"
+                                <form action="/eliminar_usuario" method="post"
                                     style="display: inline-block">
                                     @csrf
-                                    <input name="id_tipo_dispostivo" type="hidden" value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
+                                    <input name="id_usu" type="hidden" value="{{ $usuario->id_usuario }}">
                                     <button class="btn btn-danger far fa-trash-alt"></button>
+                                </form>
+    
+                                <!-- Asignación de permisos de usuario -->
+                                <form action="/asignacion_de_permisos_de_usuario" method="post"
+                                    style="display: inline-block">
+                                    @csrf
+                                    <input name="id_usuario" type="hidden" value="{{ $usuario->id_usuario }}">
+                                    
+                                    <button class="btn btn-primary"><i class="fas fa-user-shield"></i></button>
                                 </form>
     
                             </td>

@@ -3,31 +3,23 @@
 
 @section('contenido')
 
-<div class="container">
-
-    <div class="card border-primary" style="border-width:1px;">
-
-        <!-- Inicio header del card-->
-        <div class="card-header">
-
-            <!-- Título del panel-->
-            <h2 class="panel-title"> Listado de Dispositivos <a href="/agregar_dispositivo"
-                    class="btn btn-outline-success float-right">
-                    <i class="fa fa-plus"></i>
-                    Agregar</a> </h2>
-
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+            <a href="#" class="fa fa-times"></a>
         </div>
 
-        <!-- Fin header de panel-->
+        <h2 class="panel-title">Listado de Comandos <a href="/agregar_dispositivo" class="btn btn-primary float-right">
+                <i class="fa fa-plus"></i>
+                Agregar</a> </h2>
+    </header>
+    <!-- Fin header de panel-->
 
 
-        <!-- Inicio cuerpo del panel -->
-        <div class="card-body">
-
-            <!-- Inicio tabla -->
-            <table id="tabla" class="table table-bordered table-striped mb-none">
-
-                <!-- Head de la tabla-->
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="tabla" class="table table-bordered table-striped table-condensed mb-none">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -43,7 +35,7 @@
                 <tbody>
 
                     @foreach ($dispositivos as $dispositivos)
-                    
+
                     <tr>
                         <td>{{ $dispositivos -> id_dispositivo}}</td>
                         <td>{{ $dispositivos -> descripcion_dispositivo}}</td>
@@ -51,20 +43,19 @@
                         <td>{{ $dispositivos -> mac}}</td>
                         {{-- @dd($dispositivos ->tipoDeDispositivos->descripcion_tipo_dispositivo); --}}
                         <td>{{ $dispositivos ->tipoDeDispositivos->descripcion_tipo_dispositivo}}</td>
-                    <td>
+                        <td>
 
                             <!-- Modificar -->
                             <form action="/actualizar_dispositivo" method="post" style="display: inline-block">
                                 @csrf
-                                <input name="id" type="hidden" value="{{$dispositivos->id_dispositivo}}">
+                                <input name="id_dispositivo" type="hidden" value="{{$dispositivos->id_dispositivo}}">
                                 <button class="btn btn-warning fas fa-edit"></button>
                             </form>
 
                             <!-- Eliminar -->
-                            <form class="formulario_eliminar" action="/#" method="post"
-                                style="display: inline-block">
+                            <form class="formulario_eliminar" action="/eliminar_dispositivo" method="post" style="display: inline-block">
                                 @csrf
-                                <input name="id" type="hidden" value="{{ $dispositivos->id_dispositivo }}">
+                                <input name="id_dispositivo" type="hidden" value="{{ $dispositivos->id_dispositivo }}">
                                 <button class="btn btn-danger far fa-trash-alt"></button>
                             </form>
 
@@ -74,19 +65,9 @@
                     @endforeach
 
                 </tbody>
-
             </table>
-            <!-- Fin tabla -->
-
-
         </div>
-        <!-- Fin cuerpo del panel -->
-
-
-
-        <!-- ================================================================= -->
-        <!-- Fin panel -->
-        <!-- ================================================================= -->
     </div>
-</div>
+</section>
+
 @endsection

@@ -10,10 +10,10 @@
                         <a href="#" class="fa fa-times"></a>
                     </div>
 
-                    <h2 class="panel-title">Agregar Dispositivo</h2>
+                    <h2 class="panel-title">Agregar Comando</h2>
                 </header>
                     <div class="panel-body">
-                        <form action="/agregar_dispositivo_guardar" class="form-horizontal form-bordered" method="post">
+                        <form action="/agregar_comando_guardar" class="form-horizontal form-bordered" method="post">
                             @csrf
 
                             <div class="form-group">
@@ -23,34 +23,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">IP</label>
+                                <label class="col-md-3 control-label" for="inputDefault">Ruta</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="ip" id="inputDefault">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">MAC</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="mac" id="inputDefault">
+                                    <input type="text" class="form-control" name="ruta" id="inputDefault">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Dispositivo</label>
                                 <div class="col-md-6">
-                                    <select id="TiposDispositivos" name="TiposDispositivos" class="form-control select2" style="width: 100%;">
+                                    <select id="dispositivo" name="dispositivo" required class="form-control select2">
 
-                                        @foreach ($tiposDeDispositivos as $tiposDeDispositivos)
-                          
-                                         <option value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
-                                            {{ $tiposDeDispositivos->descripcion_tipo_dispositivo }}</option>
+                                        @foreach ($dispositivos as $dispositivos)
+                        
+                                        <option value="{{ $dispositivos->id_dispositivo }}">{{ $dispositivos->descripcion_dispositivo }}</option>
                     
                                         @endforeach
-                          
+                        
                                     </select>
-                                </div>
-
                                 </div>
                             </div>
 

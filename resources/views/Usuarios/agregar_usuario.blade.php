@@ -10,49 +10,46 @@
                         <a href="#" class="fa fa-times"></a>
                     </div>
 
-                    <h2 class="panel-title">Agregar Dispositivo</h2>
+                    <h2 class="panel-title">Agregar Usuario</h2>
                 </header>
                     <div class="panel-body">
-                        <form action="/agregar_dispositivo_guardar" class="form-horizontal form-bordered" method="post">
+                        <form action="/agregar_usuario_guardar" class="form-horizontal form-bordered" method="post">
                             @csrf
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Descripción</label>
+                                <label class="col-md-3 control-label" for="inputDefault">Nombre</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="descripcion" id="inputDefault">
+                                    <input type="text" class="form-control" name="nombre" id="inputDefault">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">IP</label>
+                                <label class="col-md-3 control-label" for="inputDefault">Apellido</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="ip" id="inputDefault">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">MAC</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="mac" id="inputDefault">
+                                    <input type="text" class="form-control" name="apellido" id="inputDefault">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Dispositivo</label>
+                                <label class="col-md-3 control-label" for="inputDefault">Nro de Documento</label>
                                 <div class="col-md-6">
-                                    <select id="TiposDispositivos" name="TiposDispositivos" class="form-control select2" style="width: 100%;">
-
-                                        @foreach ($tiposDeDispositivos as $tiposDeDispositivos)
-                          
-                                         <option value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
-                                            {{ $tiposDeDispositivos->descripcion_tipo_dispositivo }}</option>
-                    
-                                        @endforeach
-                          
-                                    </select>
-                                </div>
-
+                                    <input type="text" class="form-control" name="nro_doc" id="inputDefault">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="inputDefault">Usuario</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="usuario" id="inputDefault">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="inputDefault">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password" id="inputDefault">
+                                </div>
+                            </div>
+
 
                             <div class="form-group text-center">
                             <button class="btn btn-primary" style="text-align:center;">Guardar</button>

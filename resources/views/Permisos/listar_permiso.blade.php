@@ -8,7 +8,7 @@
                 <a href="#" class="fa fa-times"></a>
             </div>
     
-            <h2 class="panel-title">Listado de Tipos de Dispositivos <a href="/insertar_tipo_dispositivos"
+            <h2 class="panel-title">Listado de Permisos <a href="/agregar_permiso"
                 class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 Agregar</a> </h2>
@@ -19,30 +19,32 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Descripción</th>
+                            <th>Permiso</th>
+                            <th>Ruta</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tiposDeDispositivos as $tiposDeDispositivos)
+                    @foreach ($permiso as $permiso)
 
                         <tr>
-                            <td>{{ $tiposDeDispositivos->id_tipo_dispostivo}}</td>
-                            <td>{{ $tiposDeDispositivos->descripcion_tipo_dispositivo}}</td>
+                            <td>{{ $permiso->id_permiso}}</td>
+                            <td>{{ $permiso->descripcion_permiso}}</td>
+                            <td>{{ $permiso->ruta_permiso}}</td>
                             <td>
     
                                 <!-- Modificar -->
-                                <form action="/actualizar_tipo_dispositivos" method="post" style="display: inline-block">
+                                <form action="/actualizar_permiso" method="post" style="display: inline-block">
                                     @csrf
-                                    <input name="id_tipo_dispostivo" type="hidden" value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
+                                    <input name="id_per" type="hidden" value="{{ $permiso->id_permiso }}">
                                     <button class="btn btn-warning fas fa-edit"></button>
                                 </form>
     
                                 <!-- Eliminar -->
-                                <form action="/eliminar_tipo_dispositivos" method="post"
+                                <form action="/eliminar_permiso" method="post"
                                     style="display: inline-block">
                                     @csrf
-                                    <input name="id_tipo_dispostivo" type="hidden" value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
+                                    <input name="id_permiso" type="hidden" value="{{ $permiso->id_permiso }}">
                                     <button class="btn btn-danger far fa-trash-alt"></button>
                                 </form>
     

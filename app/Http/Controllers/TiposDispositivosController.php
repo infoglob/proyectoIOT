@@ -29,18 +29,14 @@ class TiposDispositivosController extends Controller
     public function insertar_tipo_dispositivos_guardar(Request $request)
     {
     
-        //Acá recuperamos el valor del input de descripcion con la variable request que recibimos como parametro, tiene que estar asociado con el name
-        $descripcion = mb_strtoupper($request->input("descripcion"));
-    
-        //se hace la consulta 
+        $descripcion =$request->input("descripcion");
+
         $tipoDeDispositivo = new Tipos_dispositivos();
-        //accedemos en la propiedad descripcion_tipo_dispositivo
+
         $tipoDeDispositivo->descripcion_tipo_dispositivo = $descripcion;
-    
-        //guarda en la base de datos
+
         $tipoDeDispositivo->save();
-        
-        //llamamos al metodo de listar
+
         return redirect()->action('TiposDispositivosController@tiposDeDispositivos');
     }
 
@@ -48,25 +44,20 @@ class TiposDispositivosController extends Controller
     public function actualizar_tipo_dispositivos(Request $request)
     {
       
-       //Acá recuperamos el valor del input de descripcion con la variable request que recibimos como parametro, tiene que estar asociado con el name
-        //Para probar podes parar tu servidor y iniciar de nuevo
-          $id = $request->input("id");
-          //acá buscamos ese id en la bd con  ::find()
+          $id = $request->input("id_tipo_dispostivo");
 
           $tipoDeDispositivo = Tipos_dispositivos::find($id);
-
-          // nos envia en la vsita con los valores recuperados de la bd
           return view("TiposDispositivos.actualizar-tipo-dispositivos", compact("tipoDeDispositivo"));
     }
 
 
     public function actualizar_tipo_dispositivos_guardar(Request $request)
     {
-        $id = $request->input("id");
+        $id = $request->input("id_tipo_dispostivo");
         $descripcion = $request->input("descripcion");
 
         $tipoDeDispositivo = Tipos_dispositivos::find($id);
-        $tipoDeDispositivo->descripcion_tipo_dispositivo = mb_strtoupper($descripcion);
+        $tipoDeDispositivo->descripcion_tipo_dispositivo = $descripcion;
 
         $tipoDeDispositivo->save();
 
@@ -77,7 +68,7 @@ class TiposDispositivosController extends Controller
 
     public function eliminar_tipo_dispositivos(Request $request)
     {
-            $id = $request->input("id");
+            $id = $request->input("id_tipo_dispostivo");
             $tipoDeDispositivo = Tipos_dispositivos::find($id);
             
             $tipoDeDispositivo->delete();

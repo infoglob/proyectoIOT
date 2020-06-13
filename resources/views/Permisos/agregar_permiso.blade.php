@@ -10,24 +10,25 @@
                         <a href="#" class="fa fa-times"></a>
                     </div>
 
-                    <h2 class="panel-title">Actualizar Tipo de Dispositivo</h2>
+                    <h2 class="panel-title">Agregar Permiso</h2>
                 </header>
                     <div class="panel-body">
-                        <form action="/actualizar_tipo_dispositivos_guardar" class="form-horizontal form-bordered" method="post">
+                        <form action="/agregar_permiso_guardar" class="form-horizontal form-bordered" method="post">
                             @csrf
+
                             <div class="form-group">
-                              <label class="col-md-3 control-label" for="inputDefault">ID</label>
-                              <div class="col-md-6">
-                              <input value="{{$tipoDeDispositivo->id_tipo_dispostivo}}"  type="text" class="form-control" name="id_tipo_dispostivo" id="inputDefault" readonly>
-                              </div>
-                          </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Descripción</label>
+                                <label class="col-md-3 control-label" for="inputDefault">Descripcion</label>
                                 <div class="col-md-6">
-                                    <input value="{{$tipoDeDispositivo->descripcion_tipo_dispositivo}}" type="text" class="form-control" name="descripcion" id="inputDefault">
+                                    <input type="text" class="form-control" name="descripcion_permiso" id="inputDefault">
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="inputDefault">Ruta</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="ruta_permiso" id="inputDefault">
+                                </div>
+                            </div>
+                            
                             <div class="form-group text-center">
                             <button class="btn btn-primary" style="text-align:center;">Guardar</button>
                             </div>

@@ -8,7 +8,7 @@
                 <a href="#" class="fa fa-times"></a>
             </div>
     
-            <h2 class="panel-title">Listado de Tipos de Dispositivos <a href="/insertar_tipo_dispositivos"
+            <h2 class="panel-title">Listado de Comandos <a href="/agregar_comando"
                 class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 Agregar</a> </h2>
@@ -20,32 +20,35 @@
                         <tr>
                             <th>ID</th>
                             <th>Descripción</th>
+                            <th>Ruta</th>
+                            <th>Dispositivo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tiposDeDispositivos as $tiposDeDispositivos)
+                        @foreach ($comandos as $comandos)
 
                         <tr>
-                            <td>{{ $tiposDeDispositivos->id_tipo_dispostivo}}</td>
-                            <td>{{ $tiposDeDispositivos->descripcion_tipo_dispositivo}}</td>
+                            <td>{{ $comandos->id_comando}}</td>
+                            <td>{{ $comandos->descripcion_comando}}</td>
+                            <td>{{ $comandos->ruta_comando}}</td>
+                            <td>{{ $comandos->dispositivos->descripcion_dispositivo}}</td>
                             <td>
     
                                 <!-- Modificar -->
-                                <form action="/actualizar_tipo_dispositivos" method="post" style="display: inline-block">
+                                <form action="/actualizar_comando" method="post" style="display: inline-block">
                                     @csrf
-                                    <input name="id_tipo_dispostivo" type="hidden" value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
+                                    <input name="id_comando" type="hidden" value="{{ $comandos->id_comando }}">
                                     <button class="btn btn-warning fas fa-edit"></button>
                                 </form>
     
                                 <!-- Eliminar -->
-                                <form action="/eliminar_tipo_dispositivos" method="post"
+                                <form action="/eliminar_comando" method="post"
                                     style="display: inline-block">
                                     @csrf
-                                    <input name="id_tipo_dispostivo" type="hidden" value="{{ $tiposDeDispositivos->id_tipo_dispostivo }}">
+                                    <input name="id_comando" type="hidden" value="{{ $comandos->id_comando }}">
                                     <button class="btn btn-danger far fa-trash-alt"></button>
                                 </form>
-    
                             </td>
                         </tr>
     
